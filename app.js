@@ -35,9 +35,9 @@ function optionChanged() {
 
   
   //individual's metadata object
-  metadata = data.metadata[dataset_index]
-  meta_keys = Object.keys(metadata)
-  meta_values = Object.values(metadata)
+  var metadata = data.metadata[dataset_index]
+  var meta_keys = Object.keys(metadata)
+  var meta_values = Object.values(metadata)
 
   console.log(meta_keys)
   console.log(meta_values)
@@ -69,6 +69,7 @@ function optionChanged() {
     var bubble_trace = {
       y: data.samples[dataset_index].sample_values,
       x: data.samples[dataset_index].otu_ids,
+  
       mode: "markers",
       marker:{
         size: data.samples[dataset_index].sample_values,
