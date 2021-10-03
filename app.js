@@ -69,7 +69,6 @@ function optionChanged() {
     var bubble_trace = {
       y: data.samples[dataset_index].sample_values,
       x: data.samples[dataset_index].otu_ids,
-      colorscale: 'YlGnBu',
       mode: "markers",
       marker:{
         size: data.samples[dataset_index].sample_values,
@@ -85,7 +84,8 @@ function optionChanged() {
           title: "OTU ID"
         },
         margin: {
-          t: 20
+          t: 20,
+          b: 50,
         }
       }
 
