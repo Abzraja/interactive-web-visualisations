@@ -55,10 +55,21 @@ function optionChanged() {
       orientation:"h"
     };
 
+    var bar_layout = {
+      autosize: true,
+      automargin: false,
+      margin: {
+        t: 20
+      }
+    };
 
+    var config = {responsive: true}
+
+    
     var bubble_trace = {
       y: data.samples[dataset_index].sample_values,
       x: data.samples[dataset_index].otu_ids,
+      colorscale: 'YlGnBu',
       mode: "markers",
       marker:{
         size: data.samples[dataset_index].sample_values,
@@ -67,12 +78,58 @@ function optionChanged() {
       text: data.samples[dataset_index].otu_labels,
       };
 
+      var bubble_layout = {
+        autosize: true,
+        automargin: false,
+        xaxis: {
+          title: "OTU ID"
+        },
+        margin: {
+          t: 20
+        }
+      }
+
     let bar_data = [bar_trace]
     let bubble_data = [bubble_trace]
 
 
-    Plotly.newPlot("bar", bar_data);
-    Plotly.newPlot("bubble", bubble_data);
+    Plotly.newPlot("bar", bar_data, bar_layout, config);
+    Plotly.newPlot("bubble", bubble_data, bubble_layout, config);
+
+    
+    //Bonus Gauge plot
+    var gauge_data = [
+      {
+        domain: { x: [0, 1], y: [0, 1] },
+        value: metadata.wfreq,
+        title: { text: "Belly Button Washing Frequency<br>Scrubs per Week<br>" },
+        type: "indicator",
+        mode: "gauge+number",
+        gauge: {
+          axis: {range: [0,9], dtick:1, showticklabels: true},
+          bar: {color: "337ab7"},
+          steps: [
+            {range: [0,1], color:"e5e5cc"},
+            {range: [1,2], color:"ddddbb"},
+            {range: [2,3], color:"d4d4aa"},
+            {range: [3,4], color:"cccc99"},
+            {range: [4,5], color:"eeffcc"},
+            {range: [5,6], color:"c6ecc6"},
+            {range: [6,7], color:"b3e6b3"},
+            {range: [7,8], color:"79d279"},
+            {range: [8,9], color:"40bf40"},
+          ],
+        }
+      }
+    ];
+    
+    var gauge_layout = { 
+      autosize: true,
+      automargin:false,
+      margin: { t: 10,} };
+    
+    Plotly.newPlot("gauge", gauge_data, gauge_layout, config);
+    
 
   })
 
