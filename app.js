@@ -1,5 +1,5 @@
 // Data File Path
-const data_file = "../code/data/samples.json";
+const data_file = "./samples.json";
 
 function optionChanged() {
 
